@@ -1,0 +1,47 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .infobox {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        $(document).ready(function () { //menentukan apa yang terjadi ketika kejadian siap terjadi.
+            $('#checkall').click(function () {  //lakukan ketika tombol kotak cek di klik/diceklis.   
+                $("input[type='checkbox']").attr('checked', $('#checkall').is(':checked'));  //menyetel atribut elemen yang dipilih, seperti mana saja yang diceklis.
+            });
+            $('form').find(':checkbox').click(function () {  //mengembalikan nilai elemen pertama dalam larik yang lulus pengujian, seperti mengembalikan nilai total dari perhitungan yang di ceklis, dapat berkurang dapat bertambah.
+                var amt = 0;
+                $('div').filter(':gt(0)').find(':checkbox').each(function () { //.filter=membuat larik yang diisi dengan semua elemen larik yang lulus pengujian, seperti menyaring hasilnya.
+                                                            //.each=menentukan fungsi yang akan dijalankan untuk setiap elemen yang cocok, seperti mengecek box yang diceklis atau tidak.
+                    if ($('div:gt(0)')) {
+                        if ($(this).is(':checked')) {   //memeriksa apakah salah satu elemen yang dipilih cocok dengan selectorElement, seperti mengecek harga mana saja yang di ceklis, jika diceklis maka akan true, jika tidak diceklis maka akan false.
+                            amt = amt + parseInt($(this).val());   //mengembalikan atau menyetel atribut nilai dari elemen yang dipilih, seperti menyetel harga total yang diceklis.
+                        }
+                    }
+                });
+                $('p').remove();   //menghapus elemen yang dipilih, seperti ketika membatalkan ceklis maka akan dihapus.
+                $('<p>').insertAfter('div:eq(4)');  //menyisipkan elemen HTML setelah elemen yang dipilih, seperti menampilkan mana saja yang diceklis.
+                $('p').text('Tagihan yang dibeli : Rp' + amt);   //menampilkan total harga yang diceklis.
+            });
+        }); 
+    </script>
+    <form>
+        <h1>
+            Nama : Erlangga Dimastya Persada
+        </h1>
+        <h2>
+            Nrp : 05211940000120
+        </h2>
+        <div class="infobox"><input type="checkbox" id="checkall">Cek/uncek harga semua barang :</div>
+        <div class="infobox"><input type="checkbox" id="Laptop" name="laptop" value=13000000>Laptop Rp13000000</div>
+        <div class="infobox"> <input type="checkbox" id="hp" name="hp" value=3000000>Hp Rp3000000</div>
+        <div class="infobox"><input type="checkbox" id="tablet" name="tablet" value=4000000>Tablet Rp4000000</div>
+        <div class="infobox"><input type="checkbox" id="komputer" name="komputer" value=10000000>Komputer Rp10000000</div>
+    </form>
+</body>
+</html>
